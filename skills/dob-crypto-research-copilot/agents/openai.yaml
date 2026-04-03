@@ -1,0 +1,6 @@
+interface:
+  display_name: "DOB Crypto Research Copilot"
+  short_description: "Installable crypto research workflow bundle for token due diligence, wallet checks, and yield scans."
+  default_prompt: "Use DOB Crypto Research Copilot by Ben Ison"
+policy:
+  allow_implicit_invocation: true
