@@ -1,0 +1,12 @@
+{
+  "name": "dob-crypto-research-copilot",
+  "description": "Installable crypto research workflow bundle for token due diligence, wallet checks, and yield scans.",
+  "version": "1.1.0",
+  "author": {
+    "name": "Ben Ison",
+    "email": "ben@dayonebuilder.online"
+  },
+  "homepage": "https://dayonebuilder.online/products/crypto-research-copilot/",
+  "repository": "https://github.com/DayOneBuilder/dob-crypto-research-copilot",
+  "license": "MIT"
+}

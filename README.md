@@ -1,58 +1,82 @@
-        # DayOneBuilder Crypto Research Copilot by Ben Ison
+# DayOneBuilder Crypto Research Copilot by Ben Ison
 
-        Installable crypto research workflow bundle for token due diligence, wallet checks, and yield scans.
+Installable crypto research workflow bundle for token due diligence, wallet checks, and yield scans.
 
-        - Product page: https://dayonebuilder.online/products/crypto-research-copilot/
-        - Support / donations: https://checkout.dayonebuilder.online/donate/crypto-research-copilot
-        - Direct free download: https://dayonebuilder.online/downloads/dayonebuilder-crypto-research-copilot-starter.zip
+- Product page: https://dayonebuilder.online/products/crypto-research-copilot/
+- Direct file: https://dayonebuilder.online/downloads/dayonebuilder-crypto-research-copilot-starter.zip
+- Support future updates: https://checkout.dayonebuilder.online/donate/crypto-research-copilot
 
-        ## Install with your agent
+> Shorthand phrase: `Install dayonebuilder/dob-crypto-research-copilot by Ben Ison.`
+>
+> Treat that phrase as a convenience prompt, not as the only documented install contract.
 
-        Preferred phrase:
+## The least noisy setup
 
-        ```text
-        Install dayonebuilder/dob-crypto-research-copilot by Ben Ison.
-        ```
+### Codex
 
-        This repo is named for agent discovery and installability:
-        - GitHub repo: `DayOneBuilder/dob-crypto-research-copilot`
-        - repo-scoped skill for Codex: `.agents/skills/dob-crypto-research-copilot`
-        - repo-scoped skill for Claude Code: `.claude/skills/dob-crypto-research-copilot`
+```bash
+git clone https://github.com/DayOneBuilder/dob-crypto-research-copilot.git
+cd dob-crypto-research-copilot
+codex
+```
 
-        If your agent does not infer the shell steps automatically yet, the honest fallback is:
+Codex auto-discovers the repo-scoped skill from `.agents/skills/` when you launch Codex inside this repository.
 
-        ```bash
-        git clone https://github.com/DayOneBuilder/dob-crypto-research-copilot.git
-        cd dob-crypto-research-copilot
-        ./install.sh
-        ```
+This repo also ships:
+- `.codex-plugin/plugin.json`
+- `.agents/plugins/marketplace.json`
 
-        ## What install.sh does
+So if you prefer Codex's plugin directory, you can load this repo as a local plugin source instead of copying files into your home directory.
 
-        - installs the skill into `~/.agents/skills/dob-crypto-research-copilot` for Codex
-        - installs the same skill into `~/.claude/skills/dob-crypto-research-copilot` for Claude Code
-        - copies bundled assets into `~/.dayonebuilder/dob-crypto-research-copilot/assets`
-        - installs a helper launcher at `~/.local/bin/dob-crypto-research-copilot`
+### Claude Code
 
-        ## Test after install
+```bash
+git clone https://github.com/DayOneBuilder/dob-crypto-research-copilot.git
+cd dob-crypto-research-copilot
+claude --plugin-dir .
+```
 
-        ```bash
-        ~/.local/bin/dob-crypto-research-copilot --help
-        ```
+Claude Code loads the plugin from `.claude-plugin/plugin.json` when you launch it with `--plugin-dir .`.
 
-        Example prompts for your agent:
+## Optional personal install
 
-        - `Install dayonebuilder/dob-crypto-research-copilot by Ben Ison.`
-- `Use DOB Crypto Research Copilot to run a token-dd workflow for HYPE.`
-- `Scaffold the DOB Crypto Research Copilot bundle into ./research/copilot/.`
+If you want a standalone personal install outside the repo, use:
 
-        ## What is inside the repo
+```bash
+./install.sh
+```
 
-        - `assets/workflows/*.md` — bundled token-dd, wallet-check, and yield-scan workflows
-- `assets/connectors/core-stack.md` — the first recommended data stack
-- `skills/dob-crypto-research-copilot/` — installable Agent Skill for Codex and Claude Code
-- `bin/scaffold-workspace.sh` — copies the bundle into a local research directory
+What it does:
+- detects `~/.codex/skills` vs `~/.agents/skills` for Codex standalone installs
+- installs the self-contained skill into the detected Codex location
+- installs the same self-contained skill into `~/.claude/skills/`
+- installs a helper launcher into `~/.local/bin/dob-crypto-research-copilot`
 
-        ## How to use it after install
+Personal uninstall:
 
-        Use the installed skill to apply the right workflow for token DD, wallet review, or yield scanning, or scaffold the bundle into a local research folder.
+```bash
+./uninstall.sh
+```
+
+## Why this repo is structured this way
+
+The product has to work in three ways without surprise:
+1. **Repo-scoped Codex use** with no global writes
+2. **Claude plugin use** with `--plugin-dir .`
+3. **Optional standalone install** when you really want a personal global copy
+
+To make that work, the skill is self-contained under `skills/dob-crypto-research-copilot/`. The helper script and any required files live with the skill instead of depending on a separate asset copy in `~/.dayonebuilder/`.
+
+## Quick checks
+
+Repo-local helper:
+
+```bash
+bin/scaffold-workspace.sh ./research/copilot
+```
+
+Standalone launcher after `./install.sh`:
+
+```bash
+~/.local/bin/dob-crypto-research-copilot --help
+```

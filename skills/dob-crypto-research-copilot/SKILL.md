@@ -9,6 +9,6 @@ Workflow:
 1. Read `references/usage.md` first.
 2. Load only the relevant workflow under `references/workflows/` plus `references/connectors/core-stack.md` when needed.
 3. Use the bundled workflows as skeptical checklists and question frameworks.
-4. If the user wants the local bundle files, run `~/.dayonebuilder/dob-crypto-research-copilot/bin/scaffold-workspace.sh` after installation, or `bin/scaffold-workspace.sh` inside the repo clone.
+4. If the user wants the local bundle files, run `scripts/scaffold-workspace.sh` after installation, or `scripts/scaffold-workspace.sh` inside the repo clone.
 5. Do not pretend the workflow itself fetched live data; explicitly separate workflow structure from evidence collection.
 
